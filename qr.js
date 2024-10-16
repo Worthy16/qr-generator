@@ -1,18 +1,18 @@
-$(document).ready(function() {
-    $('#qrForm').on('submit', function(event) {
-        event.preventDefault();
-        
-        const url = $('#url').val();
-        const fgColor = $('#fgColor').val();
-        const bgColor = $('#bgColor').val();
+let btn= document.querySelector('#generate')
+let qrcode= document.querySelector('.qrcode')
 
-        $('#qrCode').empty(); // Clear previous QR code
-        $('#qrCode').qrcode({
-            text: url,
-            width: 200,
-            height: 200,
-            colorDark: fgColor,
-            colorLight: bgColor,
-        });
-    });
-});
+btn.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    let text = document.querySelector('#text').value;
+
+    if(text == ''){
+        alert('Emter Text or Url into Textbox')
+    }
+    else{
+        let qr = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${text}';
+        qrcode.classList.add('active')
+        qrcode.src = qr
+    }
+
+})
